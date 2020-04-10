@@ -1,0 +1,520 @@
+JSDay06：03.23
+01-内置对象导读
+	目标：
+		 能够说出什么是内置对象
+		 能够根据文档查询指定API的使用方法
+		 能够使用 Math 对象的常用方法
+		 能够使用 Date 对象的常用方法
+		 能够使用 Array 对象的常用方法
+		 能够使用 String 对象的常用方法
+		 
+02-什么是内置对象
+	1.JavaScript 中的对象分为3种：自定义对象 、内置对象、 浏览器对象
+
+	2.内置对象就是指 JS 语言自带的一些对象，这些对象供开发者使用，并提供了一些常用的或是最基本而必要的功能（属性和方法）
+	
+	3.JavaScript 提供了多个内置对象：Math、 Date 、Array、String等
+
+
+
+03-学会查阅MDN文档
+	1.学习一个内置对象的使用，只要学会其常用成员的使用即可，我们可以通过查文档学习，可以通过MDN/W3C来查询。
+	2.Mozilla 开发者网络（MDN）提供了有关开放网络技术（Open Web）的信息，包括 HTML、CSS 和万维网及 HTML5 应用的 API。
+	3.MDN:   https://developer.mozilla.org/zh-CN/
+
+04-数学对象Math最大值方法
+	1. Math 对象不是构造函数，它具有数学常数和函数的属性和方法。跟数学相关的运算（求绝对值，取整、最大值等）可以使用 Math 中的成员。
+	2. Math对象的属性和方法：
+		Math.PI		 		// 圆周率 
+		Math.floor() 	 	// 向下取整  (parseInt())
+		Math.ceil()         // 向上取整
+		Math.round()        // 四舍五入版 就近取整   注意 -3.5   结果是  -3   （四周）
+		Math.abs()		 	// 绝对值
+		Math.max()/Math.min()	 // 求最大和最小值 
+		
+	3.max()
+	
+		console.log(Math.max(1, 99, 3)); // 99
+        console.log(Math.max(-1, -10)); // -1
+        console.log(Math.max(1, 99, 'pink老师')); // NaN
+        console.log(Math.max()); // -Infinity
+	
+
+
+05-封装自己的数学对象
+
+	利用对象封装自己的数学对象  里面有 PI 最大值和最小值
+        var myMath = {
+            PI: 3.141592653,
+            max: function() {
+                var max = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    if (arguments[i] > max) {
+                        max = arguments[i];
+                    }
+                }
+                return max;
+            },
+            min: function() {
+                var min = arguments[0];
+                for (var i = 1; i < arguments.length; i++) {
+                    if (arguments[i] < min) {
+                        min = arguments[i];
+                    }
+                }
+                return min;
+            }
+        }
+        console.log(myMath.PI);
+        console.log(myMath.max(1, 5, 9));
+        console.log(myMath.min(1, 5, 9));
+
+06-Math绝对值和三个取整方法
+	1.绝对值方法
+		console.log(Math.abs(1)); // 1
+		console.log(Math.abs(-1)); // 1
+		console.log(Math.abs('-1')); // 隐式转换 会把字符串型 -1 转换为数字型
+		console.log(Math.abs('pink')); // NaN 
+
+    2.三个取整方法
+		(1) Math.floor()   地板 向下取整  往最小了取值   *parseInt(),将浮点数转换为整数
+			console.log(Math.floor(1.1)); // 1
+			console.log(Math.floor(1.9)); // 1
+		(2) Math.ceil()   ceil 天花板 向上取整  往最大了取值
+			console.log(Math.ceil(1.1)); // 2
+			console.log(Math.ceil(1.9)); // 2
+		(3) Math.round()   四舍五入  其他数字都是四舍五入，但是 .5 特殊 它往大了取     *
+			console.log(Math.round(1.1)); // 1
+			console.log(Math.round(1.5)); // 2
+			console.log(Math.round(1.9)); // 2
+			console.log(Math.round(-1.1)); // -1
+			console.log(Math.round(-1.5)); // 这个结果是 -1
+
+07-Math随机数方法  ***
+	1.Math对象随机数方法   random() 返回一个随机的小数  0 =< x < 1    [0,1)
+    2. 这个方法里面不跟参数
+    3. 代码验证 
+		console.log(Math.random());
+    4. 我们想要得到两个数之间的随机整数 并且 包含这2个整数
+		Math.floor(Math.random() * (max - min + 1)) + min;
+		
+		function getRandom(min, max) {
+			return Math.floor(Math.random() * (max - min + 1)) + min;
+			//传入1，,10，过程如下：
+			//Math.floor( 0 =< x < 1 * (max - min + 1) ) + min;
+			//Math.floor( 0 =< x < 1 * 10 ) + min;
+			//Math.floor( 0 =< x < 10  ) + min; // 这个是带小数的范围
+			// 0 =< x < 10  + 1; // 取过floor之后就是整数
+			// 1 =< x < 11  // [1,10]
+		}
+		console.log(getRandom(1, 10));
+	
+    5. 随机点名  
+		var arr = ['张三', '张三丰', '张三疯子', '李四', '李思思', 'pink老师'];
+		// console.log(arr[0]);
+		console.log(arr[getRandom(0, arr.length - 1)]);
+
+08-猜数字游戏
+09-Date日期对象的使用
+	1. Date 对象和 Math 对象不一样，他是一个构造函数，所以我们需要实例化后才能使用
+	
+		Date：内置类，需要通过new 构造函数，来自己创建日期对象  (Date.now())
+		Math：内置对象，直接就是一个对象。  Math.属性/方法
+		
+	2. 获取当前时间
+		var now = new Date();//Date构造函数没有传参，返回当前时间
+		console.log(now);
+		
+	3. 获取其他时间
+		如果括号里面有时间，就返回参数里面的时间。
+		例如日期格式字符串为‘2019-5-1’，可以写成new Date('2019-5-1')  或者 new Date('2019/5/1')  ***
+			其实就是将字符串格式的时间，转换为了Date对象  
+	
+10-格式化日期年月日星期
+	1.获取日期指定部分
+		年：getFullYear()  // 四位年份 2019 ， getYear() // 两位年份：19
+		月：getMonth() (0-11)
+		日：getDate()
+		星期：getDay() (0-6，0周日)
+		时：getHours()
+		分：getMinutes()
+		秒：getSeconds()
+	2. 格式化日期：
+		能够获取日期指定部分了，那么我们就可以按照要求格式，进行拼接。
+
+11-格式化日期时分秒
+12-Date总的毫秒数（时间戳）
+	1.Date 对象是基于1970年1月1日（世界标准时间）起的毫秒数
+	2.获取毫秒形式日期
+		// 实例化Date对象
+		var now = new Date();
+		// 1. 用于获取对象的原始值
+		console.log(date.valueOf())	
+		console.log(date.getTime())	
+		// 2. 简单写可以这么做
+		var now = + new Date();			
+		// 3. HTML5中提供的方法，有兼容性问题
+		var now = Date.now();
+
+	
+13-倒计时（上）
+
+	        //  d = parseInt(总秒数/ 60/60 /24);    //  计算天数
+    
+            //  h = parseInt(总秒数/ 60/60 %24)   //   计算小时
+    
+            //  m = parseInt(总秒数 /60 %60 );     //   计算分数
+    
+            //  s = parseInt(总秒数%60);            //   计算当前秒数
+			
+
+14-倒计时（下）
+15-数组创建的两种方式
+    // 1. 利用数组字面量
+    var arr = [1, 2, 3];
+    console.log(arr[0]);
+
+    // 2. 利用new Array()
+    // var arr1 = new Array();  // 创建了一个空的数组
+    // var arr1 = new Array(2);  // 这个2 表示 数组的长度为 2  里面有2个空的数组元素 
+    var arr1 = new Array(2, 3); // 等价于 [2,3]  这样写表示 里面有2个数组元素 是 2和3
+    console.log(arr1);
+
+16-检测是否为数组两种方式
+	1.instanceof 运算符，可以判断一个对象是否属于某种类型
+	
+		instance: 实例 （对象）
+		
+		A instanceof B : 判断A是否是B的一个实例（对象）
+		
+		arr instanceof Array :  判断arr是否是Array数组对象
+	
+	2.Array.isArray()用于判断一个对象是否为数组，isArray() 是 HTML5 中提供的方
+	
+	3. instanceof 与 typeof
+		typeof用于检查数据是否为简单数据类型和object (没有办法检测object的具体分类)
+		
+		instanceof用于某个对象是否为某个类的实例（某个构造函数创建出来的）  ， 用于检测具体是哪一类对象 ： Person，Star，Array
+		
+			Person，Star，Array
+			
+			zs      ldh    arr
+			
+			zs instanceof Person    true
+			ldh instanceof Star     true
+			
+			typeof zs  ---- Person  不对  ---- object  对 
+			typeof ldh   --- object
+			typeof arr    --- object
+			
+			但是：要与Object进行对比，都为true，万物即为对象
+				console.log(arr instanceof Object);  // true :  Array也是Object，是其中的一种分类，Array属于Object
+				console.log(obj instanceof Object);// true 
+				console.log(zs instanceof Object);// true 
+				
+		应用场景：  typeof  用来检测数据是哪种数据类型：简单：number ， string ， boolean ， undefined ， null  复杂：object
+		
+						typeof  zs ---- object  // typeof只能检测出来zs是一个对象object，但是不能检测他的具体类型
+		
+					instanceof 用来检测复杂数据object的具体类型(具体分类下的对象)：  
+						
+						比如： zs是否为Person的一个实例 ： zs instanceof Person ---- true
+														    
+		
+17-添加数组元素
+	1.push(参数1,参数2....)    ***
+		末尾添加一个或多个元素，返回新长度
+		push：推
+		arr[arr.length] = 1 // 连续追加
+		arr.push(1);// 连续追加
+	2.unshift(参数1,参数2....)
+		开头添加一个或多个元素，返回新长度
+		
+		shift：去掉
+		un: 取反义词
+	
+18-删除数组元素
+	1.pop()   ***
+		删除数组最后一个元素，返回被删除的元素
+		pop: 蹦
+	2.shift() 
+		删除数组的第一个元素，返回被删除元素
+
+
+19-筛选数组
+20-数组排序 了解 (不讲)
+	1.reverse() 翻转数组
+	2.sort() 排序
+	
+		var arr = [1, 64, 9, 6];
+		arr.sort(function(a, b) {
+			// return a - b;   // 升序 （a在前，正序）
+			return b - a;      // 降序 （b在前，倒序）
+		});
+		console.log(arr);
+		
+		
+21-获取数组元素索引  了解(不讲)
+	1.indexOf(元素) 
+		查找元素在数组中第一次出现的索引，如果不存在返回-1
+		
+		arr = ['red','pink','hotpink']
+		arr.indexOf('pink') ; // 1
+		arr.indexOf('pink1') ; // -1,代表arr中没有pink1  
+		
+	2.lastIndexOf(元素)
+		查找元素在数组中最后一次出现的索引，如果不存在返回-1
+		
+		arr = ['red','pink','hotpink','pink']
+		arr.indexOf('pink') ; // 1
+		arr.lastIndexOf('pink') ; // 3
+
+22-数组去重案例 了解 (不讲)
+23-数组转换为字符串(字符数组)
+	
+	
+	1.toString()
+		将数组元素以逗号分隔，转换为字符串，
+	2.join('分隔符')
+		将数组元素以‘分隔符’分隔，转换为字符串
+		将数组元素以‘拼接符’拼接，转换为字符串
+		
+		如果不指定分隔符，那么与toString一致，以逗号分隔
+		
+		arr = ['red','pink']
+		arr.join('-');  // red-pink
+		
+	3.其他方法 : 自己查询用法
+		1.concat()
+		2.slice()
+		3.splice()
+
+24-基本包装类型
+	1.为了方便操作基本数据类型，JavaScript 还提供了三个特殊的引用类型：String、Number和 Boolean。
+	2.基本包装类型就是把简单数据类型包装成为复杂数据类型，这样基本数据类型就有了属性和方法。
+	3.问题：为啥字符串str，有属性length？
+		var str = 'andy';
+		console.log(str.length);
+		
+		因为js对于字符串，进行了包装，变为了复杂数据类型
+			具体过程如下：
+			// 1. 生成临时变量，把简单类型包装为复杂数据类型
+			var temp = new String('andy');
+			// 2. 赋值给我们声明的字符变量
+			str = temp;
+			// 3. 销毁临时变量
+			temp = null;
+
+
+25-字符串不可变
+	1.指的是里面的值不可变，虽然看上去可以改变内容，但其实是地址变了，内存中新开辟了一个内存空间。
+	2.例子：
+		var str = 'abc';
+		str = 'hello';
+		// 当重新给 str 赋值的时候，常量'abc'不会被修改，依然在内存中
+		// 重新给字符串赋值，会重新在内存中开辟空间，这个特点就是字符串的不可变
+		// 由于字符串的不可变，在大量拼接字符串的时候会有效率问题
+		var str = '';
+		for (var i = 0; i < 100000; i++) {
+			str += i;
+		}
+		console.log(str); // 这个结果需要花费大量时间来显示，因为需要不断的开辟新的空间
+	
+	3.字符串所有的方法，都不会修改字符串本身(字符串是不可变的)，操作完成会返回一个新的字符串。
+	
+	
+	总结： 字符串不可变，指的是字符串本身在内存中不会改变。
+	
+			字符串变量存储的值可以改变。
+
+26-根据字符返回位置
+	1.indexOf('xxx',startIndex)
+		从startIndex索引位置，开始查找xxx的索引，如果找不到返回-1
+		从头到尾查找
+
+	2.lastIndexOf('xxx',startIndex)
+		从尾到头查找
+		
+		
+	数组的方法： 根据元素返回位置
+	1.indexOf(xxx) 
+		查找xxx在数组中第一次出现的索引，如果不存在返回-1
+		arr.indexOf('pink')
+	2.lastIndexOf(xxx)
+		查找xxx在数组中最后一次出现的索引，如果不存在返回-1
+		
+		
+	str.length  : 字符串与数组的很多地方都类似，字符串，字符数组   。 var str = ’abc‘；  // str_arr = ['a','b','c']
+	arr.length 
+	
+	
+	 var str = ’abc‘；  // str_arr = ['a','b','c']
+	 
+	 str.indexOf('a');  // 0
+	 str_arr.indexOf('a');// 0
+	
+27-求某个字符出现的位置以及次数 了解 (不讲)
+	
+
+28-根据位置返回字符
+	1.charAt(index)
+		返回index位置的字符
+	2.str[index]
+		获取index位置的字符
+		注意：
+			Html5新增
+			str为字符串变量
+			将字符串认定为一个字符数组
+			
+		var str = "abc";  //相当于字符数组 ['a','b','c']
+		str.charAt(0) ----  a
+		
+		str[0] --- a
+		
+		字符串：字符数组
+
+29-统计出现次数最多的字符（上）
+30-统计出现次数最多的字符（下）
+
+	    //  判断一个字符串 'abcoefoxyozzopp' 中出现次数最多的字符，并统计其次数。
+        // o.a = 1
+        // o.b = 1
+        // o.c = 1
+        // o.o = 4
+        // 核心算法：利用 charAt(） 遍历这个字符串
+        // 把每个字符都存储给对象， 如果对象没有该属性，就为1，如果存在了就 +1
+        // 遍历对象，得到最大值和该字符
+        var str = 'abcoefoxyozzopp';
+        var o = {}; // {'a':1,'b':1,'c':1,'o':4,'e:'1,'f':1}
+        for (var i = 0; i < str.length; i++) {
+            var chars = str.charAt(i); // chars 是 字符串的每一个字符 : a,b,c,o.....o
+            // 判断chars中的字符，是否在o对象中
+            // o[chars] 得到的是属性值 ： 
+            // 循环第一次：if(o['a']) --- 取出o对象中属性名叫做a的属性值 ， 没有默认值为undefined
+            //      if(undefined) : if小括号内有隐式转换---- false
+            // 如果循环到第二个o，o['o'] --- 1  --- true ，o中有o属性，有的话值就++
+            if (o[chars]) {
+                o[chars]++; // o['o']=o['o']+1
+            } else { // 代表当前o对象中没有chars存储的字符的属性  ， o没有a属性
+                o[chars] = 1; // 没有就添加一个a属性，并且给a添加值为1.----- o['a'] = 1
+            }
+        }
+        console.log(o);
+        // a: 1
+        // b: 1
+        // c: 1
+        // e: 1
+        // f: 1
+        // o: 4
+        // p: 2
+        // x: 1
+        // y: 1
+        // z: 2
+        // 2. 遍历对象
+        var max = 0; //1
+        var ch = '';
+        for (var k in o) { //k='a' , k='o'
+            // k 得到是 属性名
+            // o[k] 得到的是属性值
+            if (o[k] > max) { //  o['a'] > max  -- 1 > 0   ,  o['o']  > max  , 4 > 1
+                max = o[k]; // max = 1  , max = 4
+                ch = k; //     ch = 'a' , ch = 'o'
+            }
+        }
+        // console.log(max);
+        // console.log('最多的字符是' + ch);
+		
+31-拼接以及截取字符串
+	1.concat(str1,str2,str3)
+		连接多个字符串，与+一样
+	2.substr(startIndex,length)  ***
+		从start位置开始截取length个字符
+	3.substring(start,end)
+		从start位置开始截取到end，不包含end
+		
+	注意：
+	    // 字符串操作方法
+        // 1. concat('字符串1','字符串2'....)
+        var str = 'andy';
+        console.log(str.concat('red'));// 由于字符串不可变性，所以是在新字符串长进行操作，并返回，不操作原字符串
+        console.log(str);
+
+32-替换字符串以及转换为数组
+	1.replace(oldStr,newStr)
+		将oldStr替换为newStr
+		
+	2.split('分隔符')
+		将字符串按照分隔符，分隔为数组
+		
+		split：分隔
+		
+		例子：
+			var str = 'a,b,c,d';
+			console.log(str.split(','));   // 返回的是一个数组 [a, b, c, d]
+			
+	注意：
+	    // 有一个字符串 'abcoefoxyozzopp'  要求把里面所有的 o 替换为 *
+        var str1 = 'abcoefoxyozzopp';
+        // 判断某个/某些字符是否在某个字符串中存在  ***
+        // 如果 此字符索引==-1，说明不存在
+        // 反之，存在
+        while (str1.indexOf('o') !== -1) {// str1中有o，就继续循环
+            str1 = str1.replace('o', '*'); //abc*efoxyozzopp，因为字符串替换之后的结果不会影响str1，所以需要重新给str1赋值
+        }
+        console.log(str1);
+		
+
+33-简单数据类型和复杂数据类型导读
+	目标：
+		 能够说出简单数据类型的内存分配
+		 能够说出复杂数据类型的内存分配
+		 能够说出简单类型如何传参
+		 能够说出复杂类型如何传参
+		 
+34-数据类型内存分配
+	1.简单类型又叫做基本数据类型或者值类型，复杂类型又叫做引用类型。
+	
+	2.值类型：简单数据类型/基本数据类型，在存储时变量中存储的是值本身，因此叫做值类型
+		string ，number，boolean，undefined，null
+	
+	3.引用类型：复杂数据类型，在存储时变量中存储的仅仅是地址（引用），因此叫做引用数据类型
+		通过 new 关键字创建的对象（系统对象、自定义对象），如 Object、Array、Date等
+
+	堆栈：注意：JavaScript中没有堆栈的概念，通过堆栈的方式，可以让大家更容易理解代码的一些执行方式，便于将来学习其他语言。
+	1、栈（操作系统）：由操作系统自动分配释放存放函数的参数值、局部变量的值等。其操作方式类似于数据结构中的栈；
+			简单数据类型存放到栈里面
+　　
+	2、堆（操作系统）：存储复杂类型(对象)，一般由程序员分配释放，若程序员不释放，由垃圾回收机制回收。
+			复杂数据类型存放到堆里面
+
+		
+35-简单数据类型传参
+	函数的形参也可以看做是一个变量，当我们把一个值类型变量作为参数传给函数的形参时，
+	其实是把变量在栈空间里的值复制了一份给形参，那么在方法内部对形参做任何修改，都不会影响到的外部变量。
+
+
+36-复杂数据类型传参
+
+	函数的形参也可以看做是一个变量，当我们把引用类型变量传给形参时，
+	其实是把变量在栈空间里保存的堆地址复制给了形参，形参和实参其实保存的是同一个堆地址，所以操作的是同一个对象。
+
+
+	
+	函数传参过程：实参传递给形参：
+		实参在栈中存储的内容复制一份，然后给形参
+
+	
+           
+
+
+
+
+
+
+
+
+
+
+
+
+

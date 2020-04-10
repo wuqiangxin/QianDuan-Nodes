@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://www.cnblogs.com/walls/p/6476609.html -->
+<html lang="zh-cn"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="origin">
+    <meta property="og:description" content="概要 本文主要描述，如何不使用中间值，将两个变量的值进行交换。 前三种只适用于number类型的数值交换，第四和第五种适合其他类型。 一、普通做法 普通的做法就是声明多一个临时变量 ，进行数据交换过程">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <title>JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园</title>
+    
+    <link rel="stylesheet" href="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/blog-common.min.css">
+    <link id="MainCss" rel="stylesheet" href="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/bundle-simplememory.min.css">
+    <link type="text/css" rel="stylesheet" href="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/custom.css">
+    <link id="mobile-style" media="only screen and (max-width: 767px)" type="text/css" rel="stylesheet" href="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/bundle-SimpleMemory-mobile.min.css">
+    
+    <link type="application/rss+xml" rel="alternate" href="https://www.cnblogs.com/walls/rss">
+    <link type="application/rsd+xml" rel="EditURI" href="https://www.cnblogs.com/walls/rsd.xml">
+    <link type="application/wlwmanifest+xml" rel="wlwmanifest" href="https://www.cnblogs.com/walls/wlwmanifest.xml">
+    <script src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/pubads_impl_rendering_2019111201.js.下载"></script><script async="" src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/analytics.js.下载"></script><script src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/jquery-2.2.0.min.js.下载"></script>
+    <script src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/blog-common.min.js.下载"></script>
+    <script>
+        var currentBlogId = 213610;
+        var currentBlogApp = 'walls';
+        var cb_enable_mathjax = false;
+        var isLogined = false;
+    </script>
+    
+    
+    
+<link rel="preload" href="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/f.txt" as="script"><script type="text/javascript" src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/f.txt"></script><script src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/pubads_impl_2019111201.js.下载" async=""></script><link rel="prefetch" href="https://tpc.googlesyndication.com/safeframe/1-0-36/html/container.html"></head>
+<body>
+    <a name="top"></a>
+    
+    
+<!--done-->
+<div id="home">
+<div id="header">
+	<div id="blogTitle">
+        <a id="lnkBlogLogo" href="https://www.cnblogs.com/walls/"><img id="blogLogo" src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/logo.gif" alt="返回主页"></a>		
+		
+<!--done-->
+<h1><a id="Header1_HeaderTitle" class="headermaintitle HeaderMainTitle" href="https://www.cnblogs.com/walls/">王先生的基地</a>
+</h1>
+<h2>
+此生理想，近期计划，今日功课。
+</h2>
+
+
+
+
+		
+	</div><!--end: blogTitle 博客的标题和副标题 -->
+	<div id="navigator">
+		
+<ul id="navList">
+<li><a id="blog_nav_sitehome" class="menu" href="https://www.cnblogs.com/">
+博客园</a>
+</li>
+<li>
+<a id="blog_nav_myhome" class="menu" href="https://www.cnblogs.com/walls/">
+首页</a>
+</li>
+<li>
+
+
+</li>
+<li>
+</li>
+<li>
+<a id="blog_nav_rss" class="menu" href="https://www.cnblogs.com/walls/rss/">
+订阅</a>
+<!--<partial name="./Shared/_XmlLink.cshtml" model="Model" /></li>--></li>
+<li>
+<a id="blog_nav_admin" class="menu" href="https://i.cnblogs.com/">
+管理</a>
+</li>
+</ul>
+
+
+		<div class="blogStats">
+			
+			<span id="stats_post_count">随笔 - 
+42&nbsp; </span>
+<span id="stats_article_count">文章 - 
+1&nbsp; </span>
+<span id="stats-comment_count">评论 - 
+50</span>
+
+			
+		</div><!--end: blogStats -->
+	</div><!--end: navigator 博客导航栏 -->
+</div><!--end: header 头部 -->
+
+<div id="main">
+	<div id="mainContent">
+	<div class="forFlow">
+		<div id="post_detail">
+    <!--done-->
+    <div id="topics">
+        <div class="post">
+            <h1 class="postTitle">
+                
+<a id="cb_post_title_url" class="postTitle2" href="https://www.cnblogs.com/walls/p/6476609.html">JavaScript两个变量交换值（不使用临时变量）</a>
+
+            </h1>
+            <div class="clear"></div>
+            <div class="postBody">
+                
+<div id="cnblogs_post_body" class="blogpost-body cnblogs-markdown">
+    <h1 id="概要">概要</h1>
+<p> 本文主要描述，如何不使用中间值，将两个变量的值进行交换。<br>
+ 前三种只适用于number类型的数值交换，第四和第五种适合其他类型。</p>
+<h1 id="一普通做法">一、普通做法</h1>
+<pre class="javascript"><code class="hljs"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>,
+    b = <span class="hljs-number">2</span>,
+    tmp;
+
+tmp = a;
+a = b;
+b = tmp;</code></pre>
+<p> 普通的做法就是声明多一个临时变量<code>tmp</code>，进行数据交换过程中的缓存。这样的做法直观，易懂。但是，会增加内存的使用。</p>
+<h1 id="二算术运算">二、算术运算</h1>
+<pre class="javascript"><code class="hljs"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>,
+    b = <span class="hljs-number">2</span>;
+
+a = a + b; <span class="hljs-comment">// a = 3, b = 2</span>
+b = a - b; <span class="hljs-comment">// a = 3, b = 1</span>
+a = a - b; <span class="hljs-comment">// a = 2, b = 1</span></code></pre>
+<p> 通过算术运算过程中的技巧，可以巧妙地将两个值进行互换。但是，有个缺点就是变量数据溢出。因为JavaScript能存储数字的精度范围是 <strong>-2<sup>53</sup> 到 2<sup>53</sup></strong>。所以，加法运算，会存在溢出的问题。</p>
+<h1 id="三异或运算">三、异或运算</h1>
+<pre class="javascript"><code class="hljs"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>, <span class="hljs-comment">// 二进制：0001</span>
+    b = <span class="hljs-number">2</span>;  <span class="hljs-comment">// 二进制：0010</span>
+
+a = a ^ b; <span class="hljs-comment">// 计算结果：a = 0011, b = 0010</span>
+b = a ^ b; <span class="hljs-comment">// 计算结果：a = 0011, b = 0001</span>
+a = a ^ b; <span class="hljs-comment">// 计算结果：a = 0010, b = 0001</span></code></pre>
+<p> 本题巧用位运算的技巧，利用 <code>a ^ b ^ b == a</code> 的特点，进行数值交换，避免了使用算术运算带来的弊端，不会发生溢出问题。</p>
+<h1 id="四es6的解构">四、ES6的解构</h1>
+<pre class="javascript"><code class="hljs"><span class="hljs-keyword">let</span> a = <span class="hljs-number">1</span>,
+    b = <span class="hljs-number">2</span>;
+
+[a, b] = [b, a];</code></pre>
+<p> 用解构的语法特性，一次性解决，简单暴力，哈哈哈~<br>
+ <strong>更重要的一点：</strong>解构语法还适用于其他类型的变量进行互换。所以，用解构可以很easy地进行互换。</p>
+<h1 id="五利用数组特性进行交换">五、利用数组特性进行交换</h1>
+<pre class="javascript"><code class="hljs"><span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>,
+    b = <span class="hljs-number">2</span>;
+
+a = [a, b];
+b = a[<span class="hljs-number">0</span>];
+a = a[<span class="hljs-number">1</span>];</code></pre>
+
+</div>
+<div id="MySignature" style="display: block;"><hr style="margin-top: 30px">
+
+<p style="margin-top: 20px; margin-bottom: 20px">
+喜欢我文章的朋友，可以通过以下方式关注我：
+</p>
+<ul>
+<li><strong>「star」</strong> 或 <strong>「watch」</strong> 我的<a href="https://github.com/wall-wxk/blog" target="_blank">GitHub blog</a></li>
+<li>RSS订阅我的<a href="https://wangxiaokai.vip/" target="_blank">个人博客</a>:</li>
+</ul>
+<img src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/718206-20190808234850902-481673533.png" alt="wall的个人博客"></div>
+<div class="clear"></div>
+<div id="blog_post_info_block"><div id="BlogPostCategory">
+    分类: 
+            <a href="https://www.cnblogs.com/walls/category/654930.html" target="_blank">javascript</a></div>
+<div id="EntryTag">
+    标签: 
+            <a href="https://www.cnblogs.com/walls/tag/%E8%A7%A3%E6%9E%84/">解构</a>,             <a href="https://www.cnblogs.com/walls/tag/ES6/">ES6</a></div>
+
+    <div id="blog_post_info">
+<div id="green_channel">
+        <a href="javascript:void(0);" id="green_channel_digg" onclick="DiggIt(6476609,cb_blogId,1);green_channel_success(this,&#39;谢谢推荐！&#39;);">好文要顶</a>
+        <a id="green_channel_follow" onclick="follow(&#39;a44c9835-c6a5-e411-b908-9dcfd8948a71&#39;);" href="javascript:void(0);">关注我</a>
+    <a id="green_channel_favorite" onclick="AddToWz(cb_entryId);return false;" href="javascript:void(0);">收藏该文</a>
+    <a id="green_channel_weibo" href="javascript:void(0);" title="分享至新浪微博" onclick="ShareToTsina()"><img src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/icon_weibo_24.png" alt=""></a>
+    <a id="green_channel_wechat" href="javascript:void(0);" title="分享至微信" onclick="shareOnWechat()"><img src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/wechat.png" alt=""></a>
+</div>
+<div id="author_profile">
+    <div id="author_profile_info" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/walls/" target="_blank"><img src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/20180712163110.png" class="author_avatar" alt=""></a>
+        <div id="author_profile_detail" class="author_profile_info">
+            <a href="https://home.cnblogs.com/u/walls/">我是leon</a><br>
+            <a href="https://home.cnblogs.com/u/walls/followees/">关注 - 10</a><br>
+            <a href="https://home.cnblogs.com/u/walls/followers/">粉丝 - 30</a>
+        </div>
+    </div>
+    <div class="clear"></div>
+    <div id="author_profile_honor"></div>
+    <div id="author_profile_follow">
+                <a href="javascript:void(0);" onclick="follow(&#39;a44c9835-c6a5-e411-b908-9dcfd8948a71&#39;);return false;">+加关注</a>
+    </div>
+</div>
+<div id="div_digg">
+    <div class="diggit" onclick="votePost(6476609,&#39;Digg&#39;)">
+        <span class="diggnum" id="digg_count">0</span>
+    </div>
+    <div class="buryit" onclick="votePost(6476609,&#39;Bury&#39;)">
+        <span class="burynum" id="bury_count">0</span>
+    </div>
+    <div class="clear"></div>
+    <div class="diggword" id="digg_tips">
+    </div>
+</div>
+
+<script type="text/javascript">
+    currentDiggType = 0;
+</script></div>
+    <div class="clear"></div>
+    <div id="post_next_prev">
+
+    <a href="https://www.cnblogs.com/walls/p/6399837.html" class="p_n_p_prefix">« </a> 上一篇：    <a href="https://www.cnblogs.com/walls/p/6399837.html" title="发布于 2017-02-15 07:20">JavaScript函数节流和函数防抖之间的区别</a>
+    <br>
+    <a href="https://www.cnblogs.com/walls/p/9014687.html" class="p_n_p_prefix">» </a> 下一篇：    <a href="https://www.cnblogs.com/walls/p/9014687.html" title="发布于 2018-05-09 15:44">SEO优化-robots.txt解读</a>
+
+</div>
+</div>
+            </div>
+            <div class="postDesc">posted @ 
+<span id="post-date">2017-02-27 22:07</span>&nbsp;<a href="https://www.cnblogs.com/walls/">我是leon</a> 阅读(<span id="post_view_count">4274</span>) 评论(<span id="post_comment_count">0</span>) <a href="https://i.cnblogs.com/EditPosts.aspx?postid=6476609" rel="nofollow"> 编辑</a> <a href="javascript:void(0)" onclick="AddToWz(6476609); return false;">收藏</a>
+</div>
+        </div>
+	    
+	    
+    </div><!--end: topics 文章、评论容器-->
+</div>
+<script src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/highlight.min.js.下载"></script>
+<script>markdown_highlight();</script>
+<script>
+    var allowComments = true, cb_blogId = 213610, cb_blogApp = 'walls', cb_blogUserGuid = 'a44c9835-c6a5-e411-b908-9dcfd8948a71';
+    var cb_entryId = 6476609, cb_entryCreatedDate = '2017-02-27 22:07', cb_postType = 1; 
+    loadViewCount(cb_entryId);
+</script><a name="!comments"></a>
+<div id="blog-comments-placeholder"></div>
+<script>
+    var commentManager = new blogCommentManager();
+    commentManager.renderComments(0);
+</script>
+
+<div id="comment_form" class="commentform">
+    <a name="commentform"></a>
+    <div id="divCommentShow"></div>
+    <div id="comment_nav"><span id="span_refresh_tips"></span><a href="javascript:void(0);" onclick="return RefreshCommentList();" id="lnk_RefreshComments" runat="server" clientidmode="Static">刷新评论</a><a href="https://www.cnblogs.com/walls/p/6476609.html#" onclick="return RefreshPage();">刷新页面</a><a href="https://www.cnblogs.com/walls/p/6476609.html#top">返回顶部</a></div>
+    <div id="comment_form_container"><div class="login_tips">
+    注册用户登录后才能发表评论，请 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return login(&#39;commentform&#39;);">登录</a>
+     或 
+    <a rel="nofollow" href="javascript:void(0);" class="underline" onclick="return register();">注册</a>，
+    <a href="https://www.cnblogs.com/">访问</a> 网站首页。
+</div></div>
+    <div class="ad_text_commentbox" id="ad_text_under_commentbox"></div>
+    <div id="ad_t2"><a href="https://cloud.tencent.com/act/pro/overseas?fromSource=gwzcw.3090393.3090393.3090393&amp;utm_medium=cpc&amp;utm_id=gwzcw.3090393.3090393.3090393" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-腾讯云&#39;)">【推荐】腾讯云海外1核2G云服务器低至2折，半价续费券限量免费领取！</a><br><a href="https://www.jdcloud.com/cn/activity/year-end?utm_source=DMT_cnblogs&amp;utm_medium=CH&amp;utm_campaign=q4vm&amp;utm_term=Virtual-Machines" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-京东云&#39;)">【活动】京东云服务器_云主机低于1折，低价高性能产品备战双11</a><br><a href="http://www.ucancode.com/index.htm" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-工控&#39;)">【推荐】超50万行VC++源码: 大型组态工控、电力仿真CAD与GIS源码库</a><br><a href="https://ke.qq.com/huodong/mashibing_pc/index.html?from=800018451" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-马士兵&#39;)">【培训】马士兵老师一对一职业规划指导！程序员突破年薪80W！</a><br><a href="https://www.ctyun.cn/activity/20191111?hmsr=%E7%9C%8B%E7%9C%8B-%E5%8D%9A%E5%AE%A2%E5%9B%AD-%E5%8F%8C11-1106&amp;hmpl=&amp;hmcu=&amp;hmkw=&amp;hmci=" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-天翼云&#39;)">【推荐】天翼云双十一翼降到底，云主机11.11元起，抽奖送大礼</a><br><a href="https://ke.qq.com/huodong/xiangxueketang_pc/index.html?from=800018909" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-享学&#39;)">【培训】2019年这些技术点你都不懂的话，如何去争取高薪呢？</a><br><a href="https://www.uibot.com.cn/sem/bky.html" target="_blank" onclick="ga(&#39;send&#39;, &#39;event&#39;, &#39;Link&#39;, &#39;click&#39;, &#39;T2-uibot_T2&#39;)">【推荐】流程自动化专家UiBot，体系化教程成就高薪RPA工程师</a><br></div>
+    <div id="opt_under_post"></div>
+    <script async="async" src="./JavaScript两个变量交换值（不使用临时变量） - 我是leon - 博客园_files/gpt.js.下载"></script>
+    <script>
+        var googletag = googletag || {};
+        googletag.cmd = googletag.cmd || [];
+    </script>
+    <script>
+        googletag.cmd.push(function () {
+            googletag.defineSlot("/1090369/C1", [300, 250], "div-gpt-ad-1546353474406-0").addService(googletag.pubads());
+            googletag.defineSlot("/1090369/C2", [468, 60], "div-gpt-ad-1539008685004-0").addService(googletag.pubads());
+            googletag.pubads().enableSingleRequest();
+            googletag.enableServices();
+        });
+    </script>
+    <div id="cnblogs_c1" class="c_ad_block" style="">
+        <div id="div-gpt-ad-1546353474406-0" style="height: 250px; width: 300px;"><div id="google_ads_iframe_/1090369/C1_0__container__" style="border: 0pt none; width: 300px; height: 250px;"></div></div>
+    </div>
+    <div id="under_post_news"><div class="recomm-block"><b>相关博文：</b><br>·  <a title="JavaScript两个变量的值交换的多种方式" href="https://www.cnblogs.com/shcrk/p/10363637.html" target="_blank" onclick="clickRecomItmem(10363637)">JavaScript两个变量的值交换的多种方式</a><br>·  <a title="不利用临时变量，交换两个变量的值" href="https://www.cnblogs.com/zoe15/p/5350522.html" target="_blank" onclick="clickRecomItmem(5350522)">不利用临时变量，交换两个变量的值</a><br>·  <a title="交换两个变量" href="https://www.cnblogs.com/tid-think/p/5132117.html" target="_blank" onclick="clickRecomItmem(5132117)">交换两个变量</a><br>·  <a title="思维革命：交换两个变量的值" href="https://www.cnblogs.com/yxcb/archive/2011/12/09/2276939.html" target="_blank" onclick="clickRecomItmem(2276939)">思维革命：交换两个变量的值</a><br>·  <a title="不使用临时变量，交换两个变量的值" href="https://www.cnblogs.com/minisculestep/p/4887854.html" target="_blank" onclick="clickRecomItmem(4887854)">不使用临时变量，交换两个变量的值</a><br>»  <a target="_blank" href="https://recomm.cnblogs.com/blogpost/6476609">更多推荐...</a></div></div>
+    <div id="cnblogs_c2" class="c_ad_block" style="">
+        <div id="div-gpt-ad-1539008685004-0" style="height: 60px; width: 468px;">
+            <script>
+                if (new Date() >= new Date(2018, 9, 13)) {
+                    googletag.cmd.push(function () { googletag.display("div-gpt-ad-1539008685004-0"); });
+                }
+            </script>
+        <div id="google_ads_iframe_/1090369/C2_0__container__" style="border: 0pt none; width: 468px; height: 60px;"></div></div>
+    </div>
+    <div id="under_post_kb">
+<div class="itnews c_ad_block">
+    <b>最新 IT 新闻</b>:
+    <br>
+ ·              <a href="https://news.cnblogs.com/n/647643/" target="_blank">火星之旅挑战多！NASA：长期太空飞行会让人血液倒流</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647642/" target="_blank">我国推进风云气象卫星全球综合应用</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647641/" target="_blank">德利迅达、中国电信国际、和Global Switch在海外又建了一座数据中心</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647640/" target="_blank">提前一周预测流感，中国首个AI流感实时预测模型登《柳叶刀》子刊</a>
+            <br>
+ ·              <a href="https://news.cnblogs.com/n/647639/" target="_blank">少年得到获上亿元A+轮融资，实物编程公司玛塔创想估值数亿元</a>
+            <br>
+    » <a href="https://news.cnblogs.com/" title="IT 新闻" target="_blank">更多新闻...</a>
+</div></div>
+    <div id="HistoryToday" class="c_ad_block"></div>
+    <script type="text/javascript">
+        fixPostBody();
+        setTimeout(function () { incrementViewCount(cb_entryId); }, 50);
+        deliverAdT2();
+        deliverAdC1();
+        deliverAdC2();
+        loadNewsAndKb();
+        loadBlogSignature();
+LoadPostCategoriesTags(cb_blogId, cb_entryId);        LoadPostInfoBlock(cb_blogId, cb_entryId, cb_blogApp, cb_blogUserGuid);
+        GetPrevNextPost(cb_entryId, cb_blogId, cb_entryCreatedDate, cb_postType);
+        loadOptUnderPost();
+        GetHistoryToday(cb_blogId, cb_blogApp, cb_entryCreatedDate);
+    </script>
+</div>
+	</div><!--end: forFlow -->
+	</div><!--end: mainContent 主体内容容器-->
+
+	<div id="sideBar">
+		<div id="sideBarMain">
+			
+<div id="sidebar_news" class="newsItem"><!--done-->
+<h3 class="catListTitle">公告</h3>
+
+<div id="blog-news">
+    
+    <div id="profile_block">
+        昵称：
+        <a href="https://home.cnblogs.com/u/walls/">
+            我是leon
+        </a>
+        <br>
+        园龄：
+        <a href="https://home.cnblogs.com/u/walls/" title="入园时间：2015-01-27">
+            4年9个月
+        </a>
+        <br>
+        粉丝：
+        <a href="https://home.cnblogs.com/u/walls/followers/">
+            30
+        </a>
+        <br>
+        关注：
+        <a href="https://home.cnblogs.com/u/walls/followees/">
+            10
+        </a>
+        <div id="p_b_follow">
+<a href="javascript:void(0)" onclick="follow(&#39;a44c9835-c6a5-e411-b908-9dcfd8948a71&#39;)">+加关注</a></div>
+        <script>getFollowStatus('a44c9835-c6a5-e411-b908-9dcfd8948a71');</script>
+    </div>
+</div>
+
+</div>
+
+			<div id="blog-calendar" style="">
+
+<table id="blogCalendar" class="Cal" cellspacing="0" cellpadding="0" title="Calendar" border="0">
+    <tbody>
+        <tr>
+            <td colspan="7">
+                <table class="CalTitle" cellspacing="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/10/16&#39;); return false;">&lt;</a>
+                            </td>
+                            <td align="center">2019年11月</td>
+                            <td align="right" class="CalNextPrev">
+                                <a href="javascript:void(0);" onclick="loadBlogCalendar(&#39;2019/12/16&#39;); return false;">&gt;</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        <tr>
+                    <th class="CalDayHeader" align="center" abbr="日" scope="col">日</th>
+                    <th class="CalDayHeader" align="center" abbr="一" scope="col">一</th>
+                    <th class="CalDayHeader" align="center" abbr="二" scope="col">二</th>
+                    <th class="CalDayHeader" align="center" abbr="三" scope="col">三</th>
+                    <th class="CalDayHeader" align="center" abbr="四" scope="col">四</th>
+                    <th class="CalDayHeader" align="center" abbr="五" scope="col">五</th>
+                    <th class="CalDayHeader" align="center" abbr="六" scope="col">六</th>
+        </tr>
+            <tr>
+                            <td class="CalOtherMonthDay" align="center">27</td>
+                            <td class="CalOtherMonthDay" align="center">28</td>
+                            <td class="CalOtherMonthDay" align="center">29</td>
+                            <td class="CalOtherMonthDay" align="center">30</td>
+                            <td class="CalOtherMonthDay" align="center">31</td>
+                        <td class="" align="center">
+                            1
+                        </td>
+                    <td class="CalWeekendDay" align="center">
+                        2
+                    </td>
+            </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            3
+                        </td>
+                            <td class="" align="center">
+                                4
+                            </td>
+                            <td class="" align="center">
+                                5
+                            </td>
+                            <td class="" align="center">
+                                6
+                            </td>
+                            <td class="" align="center">
+                                7
+                            </td>
+                            <td class="" align="center">
+                                8
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            9
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            10
+                        </td>
+                            <td class="" align="center">
+                                11
+                            </td>
+                            <td class="" align="center">
+                                12
+                            </td>
+                            <td class="" align="center">
+                                13
+                            </td>
+                            <td class="" align="center">
+                                14
+                            </td>
+                            <td class="" align="center">
+                                15
+                            </td>
+                        <td class="CalTodayDay" align="center">
+                            16
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            17
+                        </td>
+                            <td class="" align="center">
+                                18
+                            </td>
+                            <td class="" align="center">
+                                19
+                            </td>
+                            <td class="" align="center">
+                                20
+                            </td>
+                            <td class="" align="center">
+                                21
+                            </td>
+                            <td class="" align="center">
+                                22
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            23
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalWeekendDay" align="center">
+                            24
+                        </td>
+                            <td class="" align="center">
+                                25
+                            </td>
+                            <td class="" align="center">
+                                26
+                            </td>
+                            <td class="" align="center">
+                                27
+                            </td>
+                            <td class="" align="center">
+                                28
+                            </td>
+                            <td class="" align="center">
+                                29
+                            </td>
+                        <td class="CalWeekendDay" align="center">
+                            30
+                        </td>
+                </tr>
+                <tr>
+                        <td class="CalOtherMonthDay" align="center">
+                            1
+                        </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                2
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                3
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                4
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                5
+                            </td>
+                            <td class="CalOtherMonthDay" align="center">
+                                6
+                            </td>
+                        <td class="CalOtherMonthDay" align="center">
+                            7
+                        </td>
+                </tr>
+    </tbody>
+</table></div><script>loadBlogDefaultCalendar();</script>
+			
+			<div id="leftcontentcontainer">
+				<div id="blog-sidecolumn">
+<!-- 搜索 -->
+<div id="sidebar_search" class="sidebar-block">
+    
+</div>
+
+<!-- 常用链接 -->
+
+
+<!-- 最新随笔 -->
+<div id="sidebar_recentposts" class="sidebar-block">
+    <div class="catListEssay">
+<h3 class="catListTitle">最新随笔</h3>
+<ul>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/11324567.html">1.防止域名被恶意解析</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/11337718.html">2.node命令行工具之实现项目工程自动初始化的标准流程</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/11324575.html">3.源码解析-url状态检测神器ping-url</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/9632541.html">4.React router动态加载组件-适配器模式的应用</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/9499454.html">5.惰性求值——lodash源码解读</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/9452059.html">6.堆栈的应用——用JavaScript描述数据结构</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/9393686.html">7.类的继承</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/9357818.html">8.柯里化与反柯里化</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/9339300.html">9.优雅的类写法</a>
+
+                </li>
+                <li>
+                    
+
+<a href="https://www.cnblogs.com/walls/p/9153555.html">10.webpack项目轻松混用css module</a>
+
+                </li>
+			
+
+</ul>
+</div>
+
+
+</div>
+
+
+<!-- 我的标签 -->
+
+
+<!-- 积分与排名 -->
+<div id="sidebar_scorerank" class="sidebar-block">
+    <div class="catListBlogRank">
+<h3 class="catListTitle">积分与排名</h3>
+<ul>
+	<li class="liScore">
+		积分 -	
+61103
+	</li>
+	<li class="liRank">
+		排名 -	
+10782
+	</li>
+</ul>
+</div>
+
+
+
+
+</div>
+
+<!-- 随笔分类、随笔档案、文章分类、新闻分类、相册、链接 -->
+<div id="sidebar_categories">
+    
+        <div id="sidebar_postcategory" class="catListPostCategory sidebar-block">
+            <h3 class="catListTitle">
+                
+
+随笔分类
+<span style="font-size:11px;font-weight:normal">(52)</span>
+
+
+            </h3>
+
+
+            <ul>
+
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/654931.html" rel="" target="">
+    css(7)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/1222029.html" rel="" target="">
+    Git(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/935289.html" rel="" target="">
+    HTML(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/654930.html" rel="" target="">
+    javascript(27)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/654932.html" rel="" target="">
+    jQuery(3)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/1222995.html" rel="" target="">
+    工程化(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/1522594.html" rel="" target="">
+    后端(1)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/1522598.html" rel="" target="">
+    开源项目(2)
+</a>
+ 
+
+                        </li>
+                        <li>
+                            
+<a href="https://www.cnblogs.com/walls/category/934257.html" rel="" target="">
+    前端工具(7)
+</a>
+ 
+
+                        </li>
+
+            </ul>
+
+
+        </div>
+
+</div>
+
+<!-- 最新评论 -->
+
+
+
+
+<!-- 阅读排行榜 -->
+<div id="sidebar_topviewedposts" class="sidebar-block">
+    <div class="catListView">
+<h3 class="catListTitle">阅读排行榜</h3>
+	<div id="TopViewPostsBlock">
+        <ul style="word-break:break-all">
+                    <li>
+                        <a href="https://www.cnblogs.com/walls/p/6399837.html">
+                            1. JavaScript函数节流和函数防抖之间的区别(25716)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/walls/p/9017821.html">
+                            2. 使用nginx缓存服务器上的静态文件(18776)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/walls/p/6298102.html">
+                            3. localStorage的黑科技-js和css缓存机制(12573)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/walls/p/6258974.html">
+                            4. webpack+sass+vue 入门教程（三）(9313)
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.cnblogs.com/walls/p/9077958.html">
+                            5. Git打标签与版本控制规范(8010)
+                        </a>
+                    </li>
+        </ul>
+    </div>
+</div>
+
+
+</div>
+
+<!-- 评论排行榜 -->
+
+
+<!-- 推荐排行榜 -->
+</div>
+                    <script>loadBlogSideColumn();</script>
+			</div>
+			
+		</div><!--end: sideBarMain -->
+	</div><!--end: sideBar 侧边栏容器 -->
+	<div class="clear"></div>
+	</div><!--end: main -->
+	<div class="clear"></div>
+	<div id="footer">
+		<!--done-->
+Copyright © 2019 我是leon
+<br><span id="poweredby">Powered by .NET Core 3.0.0 on Linux</span>
+
+
+
+	</div><!--end: footer -->
+</div><!--end: home 自定义的最大容器 -->
+
+
+    
+
+
+</body></html>

@@ -1,0 +1,475 @@
+JSDay04：02.34
+01-数组导读
+	目标：
+		- 能够知道为什么要有数组
+		- 能够创建数组
+		- 能够获取数组中的元素
+		- 能够对数组进行遍历
+		- 能够给数组新增一个元素
+		- 能够独立完成冒泡排序的案例
+
+02-什么是数组以及创建方式  
+	1.数组Array是指一组数据的集合 (数据集合，数据的组合)
+	2.其中的每个数据被称作元素（项），并提供方便的访问(获取）方式
+	3.数组是一种将一组数据存储在单个变量名下的优雅方式
+	4.在数组中可以存放任意类型的元素，但是我们一般会把一组相关的，并且数据类型相同的数据一起存放 ***
+	
+		var week = ["星期一","星期二","星期三"]; ***
+		var week = ["星期一","星期二",3];  //允许，但是一般不这么做
+	
+		普通变量： 1:1   (一个变量名对应一个数据)
+		数组变量： 1:n   (一个数组对应多个数据)
+	
+	创建方式：
+		1.利用  new 创建数组  
+			var 数组名 = new Array() ；
+			var arr = new Array();   // 创建一个新的空数组
+			
+		2.利用数组字面量创建数组  ***
+			//1. 使用数组字面量方式创建空的数组
+			var  数组名 = []；
+			//2. 使用数组字面量方式创建带初始值的数组
+			var  数组名 = ['小白','小黑','大黄','瑞奇'];
+			
+			
+			注意： 数组内部存储数据的形式：
+			
+				var  dogs = ['小白','小黑','大黄','rui奇'];
+				var  dogs = [0:'小白',1:'小黑',2:'大黄',3:'rui奇'];   ***  （key:value ，键值对，索引键，数据值）
+				凡事，存储的数据结构为键值对，都是通过键获取值。 ***
+				
+				通过索引来操作数组的元素。  ***
+				操作:
+					1. 获取：var dog0 = dogs[0]; 
+					2. 新增/修改： dogs[索引] = 值
+
+03-访问数组元素
+	1.访问数组元素，即获取数组元素
+	2.索引 (下标) ：用来 操作 数组元素的序号（数组下标从 0 开始  ***）
+	3.数组可以通过索引来访问、设置、修改对应的数组元素
+	4.语法：数组名[索引]
+	5.例子：
+		// 定义数组
+		var arrStus = [1,2,3];
+		// 获取数组中的第2个元素
+		alert(arrStus[1]);   
+		
+	6. 课堂练习：
+		var week = ["星期一","星期二","星期三","星期四","星期五","星期六","星期日"];
+		console.log(week[6])
+		console.log(week[0])
+		console.log(week[1])
+
+04-遍历数组
+	1.遍历数组：就是把数组中的每个元素从头到尾都获取一次
+	2.通过for循环获取
+	3.例子：	
+		var arr = ['red','green', 'blue'];
+		for(var i = 0; i < 3; i++){
+			console.log(arr[i]);
+		}
+		
+		注意：for循环遍历数组，i从0开始。
+		
+	4. 课堂练习：
+		var heros = ["关羽","张飞","马超","赵云","黄忠","刘备","姜维"];
+		for(var i = 0 ; i <= 6 ; i++){
+			console.log(heros[i]);
+		}
+		
+	
+05-数组长度
+
+	1.使用“数组名.length”可以访问数组元素的数量（数组长度）。 
+	2.例子：
+		var arrStus = [1,2,3];
+		alert(arrStus.length);  // 3
+	3.注意：
+		- 此处数组的长度是数组元素的个数 ，不要和数组的索引号混淆。
+		- 当我们数组里面的元素个数发生了变化，这个 length 属性跟着一起变化。
+		
+	4. 遍历数组的固定写法：***
+		for (var i = 0; i < arr.length; i++) {
+            console.log(arr[i]);
+        }
+		
+		for (var i = 0; i <= arr.length - 1; i++) {
+            console.log(arr[i]);
+        }
+
+
+	5. 与字符串的length对比
+		var str = 'abc';  //字符串，字符集合，字符数组。 var str_array = ['a','b','c'] ; str_array.length
+		str.length;
+		
+		var arrStus = [1,2,3];
+		alert(arrStus.length);  
+		
+		数组的长度： 元素的个数
+		字符串的长度：字符的个数
+
+06-计算数组的和以及平均值
+07-求数组中的最大值
+08-数组转换为字符串
+09-数组新增元素
+	1. 可以通过数组[新索引]的方式追加数组元素，如果是旧索引，则会覆盖原元素
+	2. 例子：
+		var arr = ['red', 'green', 'blue', 'pink'];
+		arr[4] = 'hotpink';
+		arr[5] = 'hotpink2';
+		console.log(arr);
+
+	
+	
+10-数组存放1~10个值
+11-筛选数组方法1
+12-筛选数组方法2
+	题目：将数组 [2, 0, 6, 1, 77, 0, 52, 0, 25, 7] 中大于等于 10 的元素选出来，放入新数组。
+		var arr = [2, 0, 6, 1, 77, 0, 52, 0, 25, 7];
+		var newArr = [];
+		// 刚开始 newArr.length 就是 0
+		for (var i = 0; i < arr.length; i++) {
+			if (arr[i] >= 10) {
+				// 新数组索引号应该从0开始 依次递增
+				newArr[newArr.length] = arr[i];
+			}
+		}
+		console.log(newArr);
+		
+	此题重点，大家需要会通过arr[arr.length]=新元素，来动态给数组添加元素。***  （连续追加元素）
+	
+		length总比数组中最大索引大1  (arr.length:当前数组的新索引 ***)
+		
+		
+		var arr = ['red', 'green', 'blue', 'pink'];
+		arr[4] = 'hotpink';//['red', 'green', 'blue', 'pink','hotpink'];
+		arr[5] = 'hotpink2';//['red', 'green', 'blue', 'pink','hotpink','hotpink2'];
+		
+		
+		arr[arr.length] = 'hotpink'; // arr[4] = 'hotpink';  // ['red', 'green', 'blue', 'pink' ,'hotpink'];
+		arr[arr.length] = 'hotpink2'; //arr[5] = 'hotpink2'; // ['red', 'green', 'blue', 'pink' ,'hotpink','hotpink2'];
+
+13-删除数组指定元素(数组去重）
+14-翻转数组
+15-复习交换两个变量值
+16-冒泡排序原理
+	1.冒泡排序：是一种算法，把一系列的数据按照一定的顺序进行排列显示(从小到大或从大到小）。
+
+17-冒泡排序 --- 视频代码内外循环条件不应该带等号   (循环再分析.png)
+	// 冒泡排序
+	// var arr = [5, 4, 3, 2, 1];
+	var arr = [4, 1, 2, 3, 5];
+	for (var i = 0; i < arr.length - 1; i++) { // 外层循环管趟数 
+		for (var j = 0; j < arr.length - i - 1; j++) { // 里面的循环管 每一趟的交换次数
+			// 内部交换2个变量的值 前一个和后面一个数组元素相比较
+			if (arr[j] < arr[j + 1]) {
+				var temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+
+		}
+	}
+	console.log(arr);
+	
+	//arr.sort()
+	
+18-函数导读
+	目标：
+		- 能够说出为什么需要函数
+		- 能够根据语法书写函数
+		- 能够根据需求封装函数
+		- 能够说出形参和实参的传递过程
+		- 能够使用函数的返回值
+		- 能够使用arguments获取函数的参数
+
+
+19-为什么需要函数
+	1.在 JS 里面，可能会定义非常多的相同代码或者功能相似的代码，这些代码可能需要大量重复使用。
+	
+	2.虽然 for循环语句也能实现一些简单的重复操作，但是比较具有局限性，此时我们就可以使用 JS 中的函数
+	
+	3.函数：就是封装了一段可被重复调用执行的 实现了某个功能的 代码块。通过此代码块可以实现大量代码的重复使用。  
+
+
+20-函数的使用
+	1.使用步骤：声明函数和调用函数。
+	2.声明函数：
+		function 函数名() {
+			//函数体代码
+		}
+		function：功能，方法，函数
+	3.注意：
+		由于函数一般是为了实现某个功能才定义的， 所以通常我们将函数名命名为动词，比如 getSum  
+		
+		
+
+	4.调用函数：
+		函数名();  // 通过函数名(),来执行函数体代码
+		
+	5.注意：
+		声明函数本身并不会执行函数内部代码，只有调用函数时才会执行函数体代码。  ***
+
+	6.函数的封装
+		函数的封装是把一个或者多个功能通过函数的方式封装起来，对外只提供一个简单的函数接口
+		简单理解：封装类似于将电脑配件整合组装到机箱中 ( 类似快递打包）
+		
+21-利用函数求1~100累加和
+	// 1. 声明函数   
+	function getSum() {
+		var sum = 0;
+		for (var i = 1; i <= 100; i++) {
+			sum += i;
+		}
+		console.log(sum);
+
+	}
+	// 2. 调用函数
+	getSum();
+	
+22-函数的参数
+	1.在声明函数时，可以在函数名称后面的小括号中添加一些参数，这些参数被称为形参
+		形式上的参数，函数定义时，并不知道调用者会传递什么内容，所以叫形参。
+	2.而在调用该函数时，同样也需要传递相应的参数，这些参数被称为实参。
+		实际上的参数，函数调用时正儿八经传递的参数，所以叫实参。
+	
+	3.参数的作用 : 在函数内部某些值不能固定，我们可以通过参数在调用函数时传递不同的值进去。
+					将函数写死内容写活，让函数功能更加强大，更加灵活。 ***
+	
+	
+	console.log('今年我几岁了')
+	console.log('今年我'+age+'岁了')
+	4.例子：
+
+		function cook() {
+			// 
+			console.log('酸辣土豆丝');
+        }	
+		function cook(aru) { //形参：相当于声明了一个变量：var aru;   ***
+			console.log(aru);
+        }
+        cook('酸辣土豆丝');//实参，相当于给变量赋值：aru='酸辣土豆丝' ***
+        cook('大肘子');
+		var aru = '烩面'
+		cook(aru);
+		
+		arguments
+		parameter
+		
+		
+		函数与for循环：
+		
+			for循环： 避免重复代码的书写，将重复代码（循环体）连续不间断的执行  （for循环执行重复代码，是一瞬间立马执行完）
+			
+			函数：避免重复代码的书写，将重复代码（函数体），可以间断调用（放到一个公用的js文件中，很多html都可以使用）  （只有调用才会执行）
+	
+
+23-利用函数求任意两个数的和以及累加和
+	 // 1. 利用函数求任意两个数的和
+        function getSum(num1, num2) {
+            console.log(num1 + num2);
+
+        }
+        getSum(1, 3);
+        getSum(3, 8);
+		
+	如何根据题目需求，确定参数？  ***
+	
+		分析题目中的不确定因素，一个不确定因素就是一个参数
+
+24-函数形参和实参匹配问题
+	// 函数形参实参个数匹配
+	function getSum(num1, num2) {
+		console.log(num1 + num2);
+
+	}
+	// 1. 如果实参的个数和形参的个数一致 则正常输出结果
+	getSum(1, 2);
+	
+	// 2. 如果实参的个数多于形参的个数  ，多余的实参无用。
+	getSum(1, 2, 3);
+	
+	// 3. 如果实参的个数小于形参的个数  多余的形参的值为undefined 
+	// 没有实参传递，相当于形参只是声明了个变量，没有赋值。所以就是变量的默认值undefined。 ***
+	getSum(1); // NaN
+	
+	// 建议 我们尽量让实参的个数和形参相匹配
+
+25-函数的返回值return
+	1.有的时候，我们会希望函数将值返回给调用者，此时通过使用 return 语句就可以实现。
+	2.语法：
+		// 声明函数
+		function 函数名（）{
+			...
+			return  需要返回的值；
+		}
+		// 调用函数
+		var result = 函数名();    // 此时调用函数就可以得到函数体内return 后面的值
+	3.注意：
+		在使用 return 语句时，函数会停止执行，并返回指定的值
+		如果函数没有 return ，默认也有返回值，默认是 undefined
+	
+	4. 作用：  ***
+		将函数写死内容写活，让函数功能更加强大，更加灵活。
+		
+	5. 函数使用的整个过程案例： ***
+		没有参数，没有返回值：
+		function getSums() {
+            var sum = 0;
+            for (var i = 1; i <= 100; i++) {
+                sum += i;
+            }
+            console.log(sum);
+
+        }
+		getSums();
+		function getSums2() {
+            var sum = 0;
+            for (var i = 1; i <= 1000; i++) {
+                sum += i;
+            }
+            console.log(sum);
+
+        }
+		function getSums3() {
+            var sum = 0;
+            for (var i = 5; i <= 50; i++) {
+                sum += i;
+            }
+            console.log(sum);
+
+        }
+		有参数：
+		function getSums(start, end) {
+            var sum = 0;
+            for (var i = start; i <= end; i++) {
+                sum += i;
+            }
+            console.log(sum);
+			// return undefined;
+        }
+		getSums(1,100); // 输出5050  ,返回undefined
+		
+		function getSums(start, end) {
+            var sum = 0;
+            for (var i = start; i <= end; i++) {
+                sum += i;
+            }
+            alert(sum);
+			// return undefined;
+        }
+		getSums(1,100);// 弹出5050,返回undefined
+		
+		有参数，有返回值：
+		function getSums(start, end) {
+            var sum = 0;
+            for (var i = start; i <= end; i++) {
+                sum += i;
+            }
+            return sum;
+        }
+		
+		var result = geSums(1,100);
+		console.log(result);
+		alert(result);
+		result + 10 
+		
+		
+		返回值的理解：
+		
+			function getSums(start, end) {
+				var sum = 0;
+				for (var i = start; i <= end; i++) {
+					sum += i;
+				}
+				return sum;
+			} 
+			var result = geSums(1,100); // 调用函数，相当于直接调用返回值  
+			(函数调用时，会做两件事情：1.执行函数的代码 2.会将返回值返回 （返回值替换到原来调用位置）) 
+			//所以上述代码相当于 var result = sum;
+			console.log(result);
+		
+		函数： 封装了一个带有功能性的代码，并将结果返回。
+		
+		需求： 计算n-m之间的和。
+		
+			  如何编写一个函数：  ********
+                1. 确定函数名   : getSum 
+                2. 确定参数 ： 只要有一个不确定的因素，都可以变成一个参数  : n , m
+                3. 确定返回值  ： 运算结果
+				
+			
+			alert('今年5岁了');  // undefined
+			prompt('请输入内容')  // 5 ， 返回输入内容5
+			
+			什么情况下要添加返回值？
+			
+				没有明确说明，要把返回值如何处理，都需要添加返回值。  ***
+				
+				如果，明确说明，将结果弹出，这时候就不需要添加返回值。
+		
+
+26-利用函数求两个数的最大值
+27-利用函数求数组中的最大值
+28-return终止函数并且只能返回一个值
+	1.return 语句之后的代码不被执行。
+
+		function add(num1，num2){
+			//函数体
+			return num1 + num2; // 注意：return 后的代码不执行
+			alert('我不会被执行，因为前面有 return');
+		}
+		var resNum = add(21,6); // 调用函数，传入两个实参，并通过 resNum 接收函数返回值
+		alert(resNum);          // 27
+		
+	2. return 只能返回一个值。如果用逗号隔开多个值，以最后一个为准。
+
+		function add(num1，num2){
+			//函数体
+			return num1，num2;
+			
+		}
+		var resNum = add(21,6); // 调用函数，传入两个实参，并通过 resNum 接收函数返回值
+		alert(resNum);          // 6
+
+
+29-函数返回值2个注意事项
+	
+	1.函数都是有返回值的
+		如果有return 则返回 return 后面的值
+		如果没有return 则返回 undefined 
+
+	2.break ,continue ,return 的区别
+		break ：结束当前的循环体（如 for、while）
+		continue ：跳出本次循环，继续执行下次循环（如 for、while）
+		return ：不仅可以退出循环，还能够返回 return 语句中的值，同时还可以结束当前的函数体内的代码
+				  在js中return只能用在函数中。***
+		
+		for(){
+			if(){
+				//break;
+				return; // 返回的是undefined，在非函数内部使用return，return仅仅起到中断作用 (break)，不起返回值作用。  ***
+			}
+		}
+
+
+
+30-通过榨汁机看透函数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

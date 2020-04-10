@@ -1,0 +1,95 @@
+1.Math：数学对象
+	1.Math.PI		 			// 圆周率
+	2.Math.floor(n) 	 		// 向下取整（将小数去掉） parseInt()替代
+	3.Math.ceil(n)    			// 向上取整（将小数进1）
+	*4.Math.round(n)   			// 四舍五入版 就近取整   但是 .5 特殊 它往大了取   四周，周围
+	5.Math.abs(n)	 			// 绝对值
+	6.Math.max(n1,n2,...)		//获取最大值 
+	7.Math.min(n1,n2,...)		//获取最小值
+	*8.Math.random()			//获取随机小数： 0 =< x < 1
+	*9.Math.floor(Math.random() * (max - min + 1)) + min  //获取两个数之间的随机整数
+	
+2.Date：日期对象
+	*1.var date = new Date();	//获取当前日期对象
+	*2.var date = new Date('2019-05-01 08:08:08')		//将字符串格式的时间转换为日期对象（获取其他时间的日期对象）
+	*3.date.getFullYear()		//获取年
+	*4.date.getMonth()			//获取月 (0-11)
+	*5.date.getDate()			//获取日
+	*6.date.getDay() 			//获取周几 (0-6，0周日)
+	*7.date.getHours()			//获取小时
+	*8.date.getMinutes()		//获取分钟
+	*9.date.getSeconds()		//获取秒钟
+	10.console.log('今天是：' + year + '年' + month + '月' + dates + '日 ' + arr[day]);		格式化日期（将日期对象转换为字符串）
+	*11.date.valueOf()			//获取毫秒形式日期  （value：值，理解：获取当前date日期对象的真实值，本身内部存储的值。距离1970-1-1 0:0:0 的一个毫秒差）
+	12.date.getTime()			//获取毫秒形式日期
+	13.+new Date()				//获取毫秒形式日期
+	14.Date.now()				//获取毫秒形式日期
+	
+	
+3.数组Array对象
+	*1.Array.isArray(arr)			//判断arr是否为数组   程序中is：理解为是否 。 
+	*2.arr.push(参数1,参数2....)  	//末尾添加一个或多个元素，返回新长度
+	3.arr.unshift(参数1,参数2....)	//开头添加一个或多个元素，返回新长度
+	*4.arr.pop()					//删除数组最后一个元素，返回被删除的元素
+	5.arr.shift() 					//删除数组的第一个元素，返回被删除的元素
+	6.arr.reverse()					//翻转数组
+	7.arr.sort()					//数组排序,参数匿名函数
+	*8.arr.indexOf(元素)			//查找元素在数组中第一次出现的索引，如果不存在返回-1
+	9.arr.lastIndexOf(元素)			//查找元素在数组中最后一次出现的索引，如果不存在返回-1
+	*10.arr.toString()				//将数组元素以逗号分隔，转换为字符串，		
+	*11.arr.join('分隔符')			//将数组元素以‘分隔符’分隔，转换为字符串
+	
+		将数组中的每个元素，加入到字符串中（拼接）
+		
+	12.arr.concat(arr1,arr2,...)	//将arr与arr1，arr2进行合并
+	12.arr.slice(start,end)			//截取 包含选定索引的元素 形成新数组返回，[start,end)
+	12.arr.splice(start,deleteCount,item1,item2,...)	//删除，替换数组指定范围的元素
+	
+	
+4.字符串String对象
+	str = 'abc'
+	xxx = 'a'
+
+	*1.str.indexOf('xxx',startIndex)		//从startIndex索引位置，开始查找xxx的索引，如果找不到返回-1 (从头到尾查找)    
+	
+		判断某些字符，在某个字符串中，是否存在？  ***
+			var str = 'abc';
+			if(str.indexOf('ab') == -1){
+				不存在
+			}
+	
+	*2.str.lastIndexOf('xxx',startIndex)	//从startIndex索引位置，开始查找xxx的索引，如果找不到返回-1 (从尾到头查找)
+	*3.str.charAt(index)					//获取index位置的字符
+	*4.str.charCodeAt(index)				//获取index位置的字符对应的ASCII码
+	*5.str[index]							//获取index位置的字符   (为啥字符串可以使用[]，字符串：字符数组)
+	6.str.concat(str1,str2,...)				//将str与str1，str2进行合并  +替代
+	*7.str.substr(startIndex,length)		//从start位置开始截取length个字符（如果length不传，默认截取到最后）
+	8.str.slice(start,end)	  				//截取 包含选定索引的字符 形成新字符串返回，[start,end)
+	9.str.substring(start,end)				//截取 包含选定索引的字符 形成新字符串返回，[start,end)  与slice类似，但是不接受负值
+	*10.str.replace(oldStr,newStr)			//将oldStr替换为newStr
+	*11.str.split('分隔符')					//将字符串按照分隔符，分隔为数组
+	12.str.toUpperCase()					//将str转换为大写  （这里指的是字母字符串）
+	13.str.toLowerCase()					//将str转换为小写  （这里指的是字母字符串）
+	
+	
+	
+	
+	
+	indexOf  与  charAt  是相反的功能：
+	
+		indexOf : 根据 内容 找  索引
+		
+		charAt / str[index] ： 根据 索引  找 内容
+		
+		
+		数组的 根据内容找索引 ：  indexOf
+		数组的 根据 索引找内容 ： arr[index]
+	
+	
+	
+	
+	
+	
+	
+	
+	
